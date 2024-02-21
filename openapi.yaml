@@ -81,6 +81,11 @@ paths:
       parameters:
         - in: formData
           type: string
+        - type: array
+          in: query
+          name: a
+          description: aaaa
+          uniqueItems: false
       responses:
         '400':
           description: Invalid ID supplied
@@ -221,6 +226,16 @@ paths:
       responses:
         '405':
           description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          schema:
+            type:
+              - number
+              - string
+            default: sss
       security:
         - petstore_auth:
             - 'write:pets'
@@ -544,6 +559,29 @@ paths:
       responses:
         default:
           description: successful operation
+  /services:
+    get:
+      summary: service_index
+      tags:
+        - Service
+      responses:
+        '200':
+          description: OKaaaaaa
+          schema:
+            type: object
+            properties:
+              test:
+                type: string
+                x-stoplight:
+                  id: dm6jzk7z8gyc6
+      operationId: get-services
+      x-stoplight:
+        id: h0al97mknv0xo
+      parameters:
+        - type: string
+          in: query
+          name: q
+          description: 検索文字列
 securityDefinitions:
   api_key:
     type: apiKey
